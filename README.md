@@ -23,7 +23,7 @@ It is intended as a **blueprint for teams** who need to:
 
 ## Structure
 
-### 01-strategy/
+### 01-strategy/ ✅
 Vision, prerequisites, team topologies, target architecture, and maturity model.
 - [vision.md](01-strategy/vision.md) - Why modernize and target outcomes
 - [prerequisites.md](01-strategy/prerequisites.md) - **Start here** - Organizational prerequisites required
@@ -31,67 +31,65 @@ Vision, prerequisites, team topologies, target architecture, and maturity model.
 - [target-architecture.md](01-strategy/target-architecture.md) - Reference architecture and technology options
 - [maturity-model.md](01-strategy/maturity-model.md) - Assess current state and set targets
 
-### 02-principles/
+### 02-principles/ ✅
 Architecture principles that guide decisions.
 - [principles.md](02-principles/principles.md) - Core principles with examples
 - [domain-ownership-guide.md](02-principles/domain-ownership-guide.md) - Identifying domain boundaries
 - [data-ownership-guide.md](02-principles/data-ownership-guide.md) - Data sharing patterns
 - [contract-first-guide.md](02-principles/contract-first-guide.md) - API and event contracts
 
-### 03-process/
+### 03-process/ 🚧 In Progress
 Step-by-step modernization process for teams.
-- [modernization-process.md](03-process/modernization-process.md) - The main playbook
+- modernization-process.md - The main playbook
 
-### 04-patterns/
+### 04-patterns/ 🚧 In Progress
 Reusable architecture blueprints.
-- [api-service-blueprint.md](04-patterns/api-service-blueprint.md) - REST/gRPC domain services
-- [event-driven-blueprint.md](04-patterns/event-driven-blueprint.md) - Async event patterns
-- [graphql-bff-blueprint.md](04-patterns/graphql-bff-blueprint.md) - GraphQL for channels
-- [data-blueprint.md](04-patterns/data-blueprint.md) - Data modernization
+- api-service-blueprint.md - REST/gRPC domain services
+- event-driven-blueprint.md - Async event patterns
+- graphql-bff-blueprint.md - GraphQL for channels
+- data-blueprint.md - Data modernization
 
-### 05-templates/
+### 05-templates/ 🚧 In Progress
 Document templates for teams to copy.
-- [system-inventory-template.md](05-templates/system-inventory-template.md) - Assess current systems
-- [strangler-plan-template.md](05-templates/strangler-plan-template.md) - Plan incremental migration
-- [adr-template.md](05-templates/adr-template.md) - Document architecture decisions
+- system-inventory-template.md - Assess current systems
+- strangler-plan-template.md - Plan incremental migration
+- adr-template.md - Document architecture decisions
 
-### 06-checklists/
+### 06-checklists/ 🚧 In Progress
 Validation checklists for key gates.
-- [architecture-review-checklist.md](06-checklists/architecture-review-checklist.md) - Before implementation
-- [data-migration-checklist.md](06-checklists/data-migration-checklist.md) - For data migrations
-- [pre-go-live-checklist.md](06-checklists/pre-go-live-checklist.md) - Before production
+- architecture-review-checklist.md - Before implementation
+- data-migration-checklist.md - For data migrations
+- pre-go-live-checklist.md - Before production
 
-### 07-examples/
+### 07-examples/ 🚧 In Progress
 Worked examples from real domains (sanitized).
-- [README.md](07-examples/README.md) - Placeholder for case studies
+- README.md - Placeholder for case studies
 
 ## How Teams Should Use This
+
+> **Note**: Sections 03-07 are currently under review and will be published soon. Start with sections 01-02 which are complete and ready to use.
 
 ### Before You Start
 
 1. **Validate prerequisites** - Read [prerequisites.md](01-strategy/prerequisites.md) and ensure your organization has completed domain discovery and team reorganization. If not, pause and complete that work first.
 
-### Getting Started
+### Getting Started (Available Now)
 
 2. Start with [vision.md](01-strategy/vision.md) and [principles.md](02-principles/principles.md) to understand the target state.
 3. Review [team-topologies.md](01-strategy/team-topologies.md) to validate your team structure supports independent flow.
 4. Assess current systems using [maturity-model.md](01-strategy/maturity-model.md) to prioritize modernization efforts.
-5. Use [modernization-process.md](03-process/modernization-process.md) as the **main playbook**.
+5. Deep dive into principle guides:
+   - [domain-ownership-guide.md](02-principles/domain-ownership-guide.md) - How to identify domain boundaries
+   - [data-ownership-guide.md](02-principles/data-ownership-guide.md) - Patterns for data sharing
+   - [contract-first-guide.md](02-principles/contract-first-guide.md) - API and event design
 
-### For Each Service/System
+### Coming Soon (Under Review)
 
-6. Fill [system-inventory-template.md](05-templates/system-inventory-template.md) to document current state.
-7. Create [strangler-plan-template.md](05-templates/strangler-plan-template.md) for incremental migration.
-8. Design using the relevant pattern:
-   - [api-service-blueprint.md](04-patterns/api-service-blueprint.md) for domain APIs
-   - [event-driven-blueprint.md](04-patterns/event-driven-blueprint.md) for async integration
-   - [graphql-bff-blueprint.md](04-patterns/graphql-bff-blueprint.md) for channel aggregation
-   - [data-blueprint.md](04-patterns/data-blueprint.md) for data modernization
-9. Capture key decisions using [adr-template.md](05-templates/adr-template.md).
-10. Run checklists:
-    - [architecture-review-checklist.md](06-checklists/architecture-review-checklist.md) before implementation
-    - [data-migration-checklist.md](06-checklists/data-migration-checklist.md) if migrating data
-    - [pre-go-live-checklist.md](06-checklists/pre-go-live-checklist.md) before production
+6. **Process** - Step-by-step modernization playbook (03-process/)
+7. **Patterns** - Architecture blueprints for common scenarios (04-patterns/)
+8. **Templates** - Ready-to-use templates for planning and documentation (05-templates/)
+9. **Checklists** - Validation checklists for key gates (06-checklists/)
+10. **Examples** - Real-world case studies (07-examples/)
 
 ### Continuous Improvement
 
