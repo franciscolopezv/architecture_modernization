@@ -1,19 +1,47 @@
 # Prerequisites for Backend Modernization
 
-> **Critical**: This playbook is designed for organizations that have **already aligned teams to domain boundaries** using Team Topologies principles. Attempting backend modernization without this organizational foundation will result in failure.
+> **Important**: This playbook is designed for organizations that are **aligning or have aligned teams to domain boundaries** using Team Topologies principles. The organizational foundation and technical modernization should progress together.
 
 ## Why Prerequisites Matter
 
-Backend modernization is not just a technical transformation—it's an organizational one. The patterns in this playbook (domain APIs, event-driven architecture, strangler patterns) only work when:
+Backend modernization is not just a technical transformation—it's an organizational one. The patterns in this playbook (domain APIs, event-driven architecture, strangler patterns) work best when:
 
 1. Teams are organized around business domains, not technical layers
 2. Each team has end-to-end ownership of their services and data
 3. Teams can deploy independently with minimal coordination
 4. Platform capabilities are self-service, not bottlenecks
 
-Without this foundation, you will create a **distributed monolith**: microservices with all the complexity of distributed systems but none of the benefits of independent deployment and team autonomy.
+Without this foundation, you risk creating a **distributed monolith**: microservices with all the complexity of distributed systems but none of the benefits of independent deployment and team autonomy.
 
-## Mandatory Prerequisites
+## Organizational Readiness Levels
+
+You don't need everything perfect before starting. Assess your readiness level:
+
+### Level 1: Minimum Viable (Can Start with Pilot)
+- Leadership aware of need for organizational change
+- At least one domain boundary identified
+- One team willing to own a domain end-to-end
+- Basic platform capabilities exist or can be bootstrapped
+
+**Action**: Start with a pilot domain to prove the model
+
+### Level 2: Transformation in Progress (Can Scale Gradually)
+- Domain discovery underway or partially complete
+- Some teams reorganized around domains
+- Platform team forming or established
+- Leadership actively supporting transformation
+
+**Action**: Modernize domains as teams are formed
+
+### Level 3: Foundation Established (Can Scale Broadly)
+- Most domains identified and validated
+- Stream-aligned teams established for key domains
+- Platform capabilities available as self-service
+- Leadership fully aligned and funding secured
+
+**Action**: Execute modernization across multiple domains in parallel
+
+## Key Prerequisites (Flexible Approach)
 
 ### 1. Domain Discovery Completed
 
@@ -36,7 +64,7 @@ Without this foundation, you will create a **distributed monolith**: microservic
 - Use techniques from Domain-Driven Design (DDD)
 - Consider hiring DDD practitioners or enabling teams to facilitate
 
-**Typical timeline:** 4-12 weeks depending on organization size and complexity
+**Timeline:** Varies by organization size and complexity. Can be done incrementally—start with one domain and expand.
 
 ---
 
@@ -63,7 +91,7 @@ Without this foundation, you will create a **distributed monolith**: microservic
 - Establish platform and enabling teams first to support stream-aligned teams
 - Define success metrics (flow metrics, deployment frequency, lead time)
 
-**Typical timeline:** 6-18 months for full transformation; can start modernization after initial teams are formed
+**Timeline:** Organizational transformation is ongoing. Start modernization as soon as initial teams are formed—don't wait for perfection.
 
 ---
 
@@ -89,7 +117,7 @@ Without this foundation, you will create a **distributed monolith**: microservic
 - Propose pilot with one domain to prove the model
 - Engage external consultants or coaches if needed to build credibility
 
-**Typical timeline:** 2-6 months to secure alignment and funding
+**Timeline:** Varies by organization. Can start with pilot to build credibility while securing broader support.
 
 ---
 
@@ -179,27 +207,63 @@ Before proceeding with this playbook, validate:
 - [ ] Blameless postmortem culture exists or is being established
 - [ ] Experimentation and learning are encouraged
 
-## If Prerequisites Are Not Met
+## Approaches Based on Readiness
 
-**Option 1: Pause and Complete Prerequisites**
-- Recommended if you have leadership support
-- Invest 6-12 months in organizational transformation
-- Then proceed with backend modernization with much higher chance of success
+### If You're at Level 1 (Minimum Viable)
 
-**Option 2: Run a Pilot**
-- Choose one domain with clear boundaries
-- Form one stream-aligned team
-- Modernize that domain end-to-end using this playbook
-- Use success to build case for broader transformation
-- Expand incrementally
+**Start with a Pilot:**
+1. Choose one domain with clear boundaries and business value
+2. Form one stream-aligned team (or dedicate existing team)
+3. Modernize that domain end-to-end using this playbook
+4. Use success to build case for broader transformation
+5. Expand incrementally as more teams are formed
 
-**Option 3: Focus on Stabilization First**
-- If organization is not ready for transformation, focus on:
-  - Improving observability of current systems
-  - Documenting current architecture and dependencies
-  - Reducing technical debt and security risks
-  - Building platform capabilities
-- Revisit modernization when organizational readiness improves
+**Parallel work:**
+- Continue domain discovery for other areas
+- Build platform capabilities as needed
+- Secure leadership support for broader transformation
+
+### If You're at Level 2 (Transformation in Progress)
+
+**Scale Gradually:**
+1. Modernize domains as teams are formed (don't wait for all teams)
+2. Let early teams establish patterns and practices
+3. Use enabling teams to spread knowledge
+4. Build platform capabilities based on real needs
+5. Adjust domain boundaries based on learnings
+
+**Parallel work:**
+- Complete domain discovery for remaining areas
+- Continue team reorganization
+- Strengthen platform capabilities
+- Document and share learnings
+
+### If You're at Level 3 (Foundation Established)
+
+**Execute Broadly:**
+1. Modernize multiple domains in parallel
+2. Leverage established platform capabilities
+3. Apply proven patterns across teams
+4. Focus on coordination and consistency
+5. Optimize for speed and efficiency
+
+**Parallel work:**
+- Refine domain boundaries as needed
+- Mature platform capabilities
+- Build centers of excellence
+- Measure and improve flow metrics
+
+### If Prerequisites Are Completely Missing
+
+**Focus on Foundation First:**
+- Improving observability of current systems
+- Documenting current architecture and dependencies
+- Reducing critical technical debt and security risks
+- Building initial platform capabilities (CI/CD, monitoring)
+- Conducting domain discovery workshops
+- Building leadership awareness and support
+
+**Then:** Return to this playbook when you reach Level 1 readiness
 
 ## Next Steps
 
