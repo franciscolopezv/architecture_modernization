@@ -21,6 +21,7 @@ cat > "$SCRIPT_DIR/docs/intro.md" << 'HEADER'
 ---
 sidebar_position: 1
 slug: /
+title: Server-Side Architecture Playbook
 ---
 
 HEADER

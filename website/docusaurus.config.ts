@@ -45,7 +45,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/tree/main/',
+            'https://github.com/franciscolopezv/architecture_modernization/tree/main/',
         },
         blog: false, // Disable blog since docs are at root
         theme: {
@@ -86,7 +86,7 @@ const config: Config = {
           label: 'Principles',
         },
         {
-          href: 'https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME',
+          href: 'https://github.com/YOUR_GITHUB_USERNAME/architecture_modernization',
           label: 'GitHub',
           position: 'right',
         },
@@ -114,7 +114,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME',
+              href: 'https://github.com/franciscolopezv/YOUR_REPO_NAME',
             },
           ],
         },
