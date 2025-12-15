@@ -334,8 +334,8 @@ After 3 years: Lead time 67% worse, incidents 400% higher, costs 140% higher tha
 **Key takeaway:** Your architecture will mirror your organization structure whether you want it to or not. The only way to build decoupled microservices is to first build decoupled teams with clear domain ownership.
 
 **Learn more:** 
-- [team-topologies.md](team-topologies.md) - How to organize teams correctly
-- [domain-ownership-guide.md](../02-principles/domain-ownership-guide.md) - How to define boundaries
+- [team-topologies.md](team-topologies) - How to organize teams correctly
+- [domain-ownership-guide.md](../principles/domain-ownership-guide) - How to define boundaries
 
 ---
 
@@ -344,10 +344,9 @@ After 3 years: Lead time 67% worse, incidents 400% higher, costs 140% higher tha
 ### If Prerequisites Are Met
 
 Proceed to:
-1. [vision.md](vision.md) - Understand the target state
-2. [target-architecture.md](target-architecture.md) - See the goal architecture
-3. [principles.md](../02-principles/principles.md) - Learn the guiding principles
-4. [modernization-process.md](../03-process/modernization-process.md) - Follow the step-by-step playbook
+1. [vision.md](vision) - Understand the target state
+2. [target-architecture.md](target-architecture) - See the goal architecture
+3. [principles.md](../principles) - Learn the guiding principles
 
 ### If Prerequisites Are Not Met
 
