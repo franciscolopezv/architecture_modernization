@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 slug: /
-title: Server-Side Architecture Playbook
 ---
 
 
@@ -73,7 +72,7 @@ The playbook covers:
 - Full playbook applies, including organizational transformation
 - Multiple teams require clear domain boundaries and ownership
 - Coordination challenges make prerequisites critical
-- See [prerequisites.md](01-strategy/prerequisites.md) for organizational requirements
+- See [prerequisites.md](strategy/prerequisites) for organizational requirements
 
 **Use this playbook if you:**
 - Are building new server-based applications and want to start with good architecture
@@ -94,13 +93,13 @@ The patterns in this playbook work best when:
 - **Clear ownership** exists for services and data
 - **Leadership supports** incremental modernization
 
-**If you have multiple teams but these prerequisites are not met, start with [01-strategy/prerequisites.md](01-strategy/prerequisites.md).** Building or evolving architecture without organizational alignment often results in a distributed monolith.
+**If you have multiple teams but these prerequisites are not met, start with [prerequisites](strategy/prerequisites).** Building or evolving architecture without organizational alignment often results in a distributed monolith.
 
 **If you're a small team (1-3 people), you can skip the prerequisites and go directly to the patterns and principles.**
 
 ## Understanding the Reference Architecture
 
-The [target-architecture.md](01-strategy/target-architecture.md) document describes a **reference architecture** for server-side systems. Use it as a guide whether building new systems or evolving existing ones.
+The [target-architecture.md](strategy/target-architecture) document describes a **reference architecture** for server-side systems. Use it as a guide whether building new systems or evolving existing ones.
 
 **Why this matters:**
 - **Provides a north star** - All teams work toward the same architectural vision
@@ -122,18 +121,18 @@ The [target-architecture.md](01-strategy/target-architecture.md) document descri
 
 ### 01-strategy/ ✅
 Vision, prerequisites, team topologies, reference architecture, and maturity model.
-- [vision.md](01-strategy/vision.md) - What good architecture looks like and why it matters
-- [prerequisites.md](01-strategy/prerequisites.md) - Organizational prerequisites for multi-team environments
-- [team-topologies.md](01-strategy/team-topologies.md) - Team structure and domain alignment
-- [target-architecture.md](01-strategy/target-architecture.md) - Reference architecture for server-side systems
-- [maturity-model.md](01-strategy/maturity-model.md) - Assess current state and set targets
+- [vision.md](strategy/vision) - What good architecture looks like and why it matters
+- [prerequisites.md](strategy/prerequisites) - Organizational prerequisites for multi-team environments
+- [team-topologies.md](strategy/team-topologies) - Team structure and domain alignment
+- [target-architecture.md](strategy/target-architecture) - Reference architecture for server-side systems
+- [maturity-model.md](strategy/maturity-model) - Assess current state and set targets
 
 ### 02-principles/ ✅
 Architecture principles that guide decisions.
-- [principles.md](02-principles/principles.md) - Core principles with examples
-- [domain-ownership-guide.md](02-principles/domain-ownership-guide.md) - Identifying domain boundaries
-- [data-ownership-guide.md](02-principles/data-ownership-guide.md) - Data sharing patterns
-- [contract-first-guide.md](02-principles/contract-first-guide.md) - API and event contracts
+- [Core Principles](principles) - Architecture principles with examples
+- [domain-ownership-guide.md](principles/domain-ownership-guide) - Identifying domain boundaries
+- [data-ownership-guide.md](principles/data-ownership-guide) - Data sharing patterns
+- [contract-first-guide.md](principles/contract-first-guide) - API and event contracts
 
 ### 03-process/ 🚧 In Progress
 Step-by-step process for building and evolving architecture.
@@ -169,29 +168,29 @@ Real-world case studies (sanitized).
 
 ### Before You Start
 
-1. **Validate prerequisites** - Read [prerequisites.md](01-strategy/prerequisites.md) and ensure your organization has completed domain discovery and team reorganization. If not, pause and complete that work first.
+1. **Validate prerequisites** - Read [prerequisites.md](strategy/prerequisites) and ensure your organization has completed domain discovery and team reorganization. If not, pause and complete that work first.
 
 ### Getting Started (Available Now)
 
-2. **Understand the vision** - Start with [vision.md](01-strategy/vision.md) to understand what good architecture looks like and why it matters.
+2. **Understand the vision** - Start with [vision.md](strategy/vision) to understand what good architecture looks like and why it matters.
 
-3. **See the reference architecture** - Review [target-architecture.md](01-strategy/target-architecture.md) to understand the **reference architecture**. This shows:
+3. **See the reference architecture** - Review [target-architecture.md](strategy/target-architecture) to understand the **reference architecture**. This shows:
    - The layered architecture (Edge, BFF, Domain Services, Events, Data, Platform)
    - How teams align to architecture (Team Topologies in practice)
    - Technology options and decision guidance
    - Migration path from current to target state
    - Success indicators to measure progress
 
-4. **Learn the principles** - Read [principles.md](02-principles/principles.md) to understand the design principles that guide all decisions.
+4. **Learn the principles** - Read [principles](principles) to understand the design principles that guide all decisions.
 
-5. **Validate team structure** - Review [team-topologies.md](01-strategy/team-topologies.md) to ensure your team structure supports independent flow.
+5. **Validate team structure** - Review [team-topologies.md](strategy/team-topologies) to ensure your team structure supports independent flow.
 
-6. **Assess current state** - Use [maturity-model.md](01-strategy/maturity-model.md) to evaluate where you are today and prioritize improvements.
+6. **Assess current state** - Use [maturity-model.md](strategy/maturity-model) to evaluate where you are today and prioritize improvements.
 
 7. **Deep dive into principles** - Study the detailed guides:
-   - [domain-ownership-guide.md](02-principles/domain-ownership-guide.md) - How to identify domain boundaries
-   - [data-ownership-guide.md](02-principles/data-ownership-guide.md) - Patterns for data sharing
-   - [contract-first-guide.md](02-principles/contract-first-guide.md) - API and event design
+   - [domain-ownership-guide.md](principles/domain-ownership-guide) - How to identify domain boundaries
+   - [data-ownership-guide.md](principles/data-ownership-guide) - Patterns for data sharing
+   - [contract-first-guide.md](principles/contract-first-guide) - API and event design
 
 ### Coming Soon (Under Review)
 

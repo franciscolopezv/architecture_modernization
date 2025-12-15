@@ -318,9 +318,8 @@ Good server-side architecture enables:
 - Frequent incidents and long recovery times
 
 **Approach:**
-- Start with [prerequisites.md](prerequisites.md) to ensure organizational readiness
-- Use [maturity-model.md](maturity-model.md) to assess current state
-- Follow [../03-process/modernization-process.md](../03-process/modernization-process.md) for incremental migration
+- Start with [prerequisites.md](prerequisites) to ensure organizational readiness
+- Use [maturity-model.md](maturity-model) to assess current state
 - Typical timeline: 12-36 months
 
 ### Building New Systems
@@ -333,9 +332,8 @@ Good server-side architecture enables:
 
 **Approach:**
 - Start with domain discovery (identify bounded contexts)
-- Apply principles from [../02-principles/principles.md](../02-principles/principles.md)
-- Use patterns from [../04-patterns/](../04-patterns/) as blueprints
-- Reference [target-architecture.md](target-architecture.md) for the goal state
+- Apply principles from [principles.md](../principles)
+- Reference [target-architecture.md](target-architecture) for the goal state
 
 ### Evolving Existing Architecture
 
@@ -348,7 +346,6 @@ Good server-side architecture enables:
 **Approach:**
 - Identify specific pain points
 - Apply relevant principles and patterns incrementally
-- Use checklists from [../06-checklists/](../06-checklists/) for validation
 - Evolve gradually without disruption
 
 ---
@@ -357,10 +354,10 @@ Good server-side architecture enables:
 
 After reading this vision:
 
-1. **Review principles** - Read [../02-principles/principles.md](../02-principles/principles.md) to understand guiding principles
-2. **See the target** - Review [target-architecture.md](target-architecture.md) to understand the goal state
-3. **Check prerequisites** - If modernizing with multiple teams, read [prerequisites.md](prerequisites.md)
-4. **Assess maturity** - Use [maturity-model.md](maturity-model.md) to evaluate current state
+1. **Review principles** - Read [principles.md](../principles) to understand guiding principles
+2. **See the target** - Review [target-architecture.md](target-architecture) to understand the goal state
+3. **Check prerequisites** - If modernizing with multiple teams, read [prerequisites.md](prerequisites)
+4. **Assess maturity** - Use [maturity-model.md](maturity-model) to evaluate current state
 
 ---
 

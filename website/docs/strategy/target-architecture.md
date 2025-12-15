@@ -652,10 +652,8 @@ When designing services, follow these rules:
 
 After understanding the target architecture:
 
-1. **Assess current state** - Use [maturity-model.md](maturity-model.md) to evaluate where you are today
-2. **Review principles** - Read [../02-principles/principles.md](../02-principles/principles.md) to understand design principles
-3. **Plan migration** - Follow [../03-process/modernization-process.md](../03-process/modernization-process.md) for step-by-step guidance
-4. **Choose patterns** - Reference [../04-patterns/](../04-patterns/) for implementation blueprints
+1. **Assess current state** - Use [maturity-model.md](maturity-model) to evaluate where you are today
+2. **Review principles** - Read [principles.md](../principles) to understand design principles
 
 ---
 

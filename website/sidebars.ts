@@ -18,8 +18,11 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Principles',
+      link: {
+        type: 'doc',
+        id: 'principles/principles',
+      },
       items: [
-        'principles/principles',
         'principles/domain-ownership-guide',
         'principles/data-ownership-guide',
         'principles/contract-first-guide',
