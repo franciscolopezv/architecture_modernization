@@ -1,0 +1,132 @@
+/**
+ * Custom styling for Server-Side Architecture Playbook
+ * Professional, clean theme optimized for technical documentation
+ */
+
+/* Light mode - Professional blue/indigo palette */
+:root {
+  /* Primary color - Professional indigo */
+  --ifm-color-primary: #3b82f6;
+  --ifm-color-primary-dark: #2563eb;
+  --ifm-color-primary-darker: #1d4ed8;
+  --ifm-color-primary-darkest: #1e40af;
+  --ifm-color-primary-light: #60a5fa;
+  --ifm-color-primary-lighter: #93c5fd;
+  --ifm-color-primary-lightest: #bfdbfe;
+  
+  /* Typography */
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  
+  /* Code blocks */
+  --docusaurus-highlighted-code-line-bg: rgba(59, 130, 246, 0.1);
+  
+  /* Spacing and layout */
+  --ifm-spacing-horizontal: 1.5rem;
+  --ifm-navbar-height: 4rem;
+}
+
+/* Dark mode - Softer, eye-friendly palette */
+[data-theme='dark'] {
+  /* Primary color - Lighter blue for dark mode */
+  --ifm-color-primary: #60a5fa;
+  --ifm-color-primary-dark: #3b82f6;
+  --ifm-color-primary-darker: #2563eb;
+  --ifm-color-primary-darkest: #1d4ed8;
+  --ifm-color-primary-light: #93c5fd;
+  --ifm-color-primary-lighter: #bfdbfe;
+  --ifm-color-primary-lightest: #dbeafe;
+  
+  /* Background colors - softer dark mode */
+  --ifm-background-color: #0f172a;
+  --ifm-background-surface-color: #1e293b;
+  
+  /* Code blocks */
+  --docusaurus-highlighted-code-line-bg: rgba(96, 165, 250, 0.15);
+}
+
+/* Enhanced readability */
+.markdown {
+  --ifm-leading: 1.7;
+}
+
+.markdown h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.markdown h2 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.markdown h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+/* Code blocks styling */
+.prism-code {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Admonitions (callouts) */
+.admonition {
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styling */
+table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+table th {
+  background-color: var(--ifm-color-primary-lightest);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+}
+
+[data-theme='dark'] table th {
+  background-color: var(--ifm-color-primary-darkest);
+}
+
+table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ifm-table-border-color);
+}
+
+/* Sidebar improvements */
+.menu__link {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.menu__link:hover {
+  background-color: var(--ifm-color-primary-lightest);
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background-color: var(--ifm-color-primary-darkest);
+}
+
+/* Navbar improvements */
+.navbar {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--ifm-background-surface-color);
+  border-top: 1px solid var(--ifm-toc-border-color);
+}

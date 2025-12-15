@@ -1,4 +1,9 @@
-# Server-Side Architecture Playbook
+---
+sidebar_position: 1
+slug: /
+title: Server-Side Architecture Playbook
+---
+
 
 This repository defines **patterns, processes, and principles** for designing and evolving server-side architecture.
 
