@@ -2,6 +2,7 @@
 sidebar_position: 1
 slug: /
 title: Server-Side Architecture Playbook
+sidebar_label: Home
 ---
 
 

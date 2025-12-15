@@ -42,10 +42,9 @@ const config: Config = {
         docs: {
           routeBasePath: '/', // Docs at the root
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/franciscolopezv/architecture_modernization/tree/main/',
+          showLastUpdateTime: true,
         },
         blog: false, // Disable blog since docs are at root
         theme: {
@@ -58,7 +57,19 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        language: ["en"],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        docsRouteBasePath: '/',
+      },
+    ],
+  ],
 
   themeConfig: {
     // Replace with your project's social card
@@ -74,16 +85,28 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'strategySidebar',
+          type: 'doc',
+          docId: 'intro',
+          position: 'left',
+          label: 'Home',
+        },
+        {
+          type: 'doc',
+          docId: 'strategy/vision',
           position: 'left',
           label: 'Strategy',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'principlesSidebar',
+          type: 'doc',
+          docId: 'principles/principles',
           position: 'left',
           label: 'Principles',
+        },
+        {
+          type: 'doc',
+          docId: 'USAGE',
+          position: 'left',
+          label: 'Guides',
         },
         {
           href: 'https://github.com/franciscolopezv/architecture_modernization',
@@ -124,6 +147,16 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
     },
   } satisfies Preset.ThemeConfig,
 };

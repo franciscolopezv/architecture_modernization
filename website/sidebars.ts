@@ -1,10 +1,12 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
-  strategySidebar: [
+  mainSidebar: [
+    'intro',
     {
       type: 'category',
       label: 'Strategy',
+      collapsed: false,
       items: [
         'strategy/vision',
         'strategy/prerequisites',
@@ -13,11 +15,10 @@ const sidebars: SidebarsConfig = {
         'strategy/maturity-model',
       ],
     },
-  ],
-  principlesSidebar: [
     {
       type: 'category',
       label: 'Principles',
+      collapsed: false,
       link: {
         type: 'doc',
         id: 'principles/principles',
@@ -28,11 +29,10 @@ const sidebars: SidebarsConfig = {
         'principles/contract-first-guide',
       ],
     },
-  ],
-  guideSidebar: [
     {
       type: 'category',
       label: 'Guides',
+      collapsed: false,
       items: [
         'USAGE',
         'STRUCTURE',

@@ -1,9 +1,38 @@
 ---
-sidebar_position: 100
+sidebar_position: 3
 title: About This Playbook
+sidebar_label: About
 ---
 
 # About This Playbook
+
+## Why This Exists
+
+This playbook emerged from working on multiple architecture modernization initiatives across different organizations. Common patterns of success and failure became clear:
+
+**Problems observed:**
+- Teams building microservices without clear domain boundaries, creating distributed monoliths that are harder to maintain than the original monolith
+- Multiple teams modifying the same services, requiring coordination overhead that negates the benefits of service decomposition
+- Shared databases coupling services together, preventing independent deployment despite having separate codebases
+- Missing contracts (OpenAPI, AsyncAPI) leading to breaking changes and integration failures
+- Lack of observability making it difficult to understand system behavior and debug issues across service boundaries
+
+**What this optimizes for:**
+- **Flow** - Teams can deliver features independently without waiting on other teams or coordinating deployments
+- **Ownership** - Clear boundaries and accountability, one team per domain with end-to-end responsibility
+- **Contracts** - Explicit, versioned interfaces (OpenAPI, AsyncAPI) that prevent breaking changes and enable safe evolution
+- **Operability** - Built-in observability (logs, metrics, traces), SLOs, and runbooks that make systems understandable and debuggable
+
+**What this helps teams avoid:**
+- Building a distributed monolith where services exist but can't deploy independently
+- Conway's Law failures where unclear team boundaries create unclear service boundaries
+- Data coupling through shared databases that prevents independent evolution
+- Integration failures from missing or poorly defined contracts
+- Operational blindness from inadequate observability
+
+This playbook documents patterns that have worked in practice to address these challenges. It's not theoretical - it's based on real implementations, real failures, and real successes.
+
+---
 
 ## ⚠️ Important Disclaimer
 

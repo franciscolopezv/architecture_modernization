@@ -21,7 +21,7 @@
 
 ## Quick Navigation
 
-1. [Why Prerequisites Matter](#why-prerequisites-matter)
+1. [Why Prerequisites Matter](#why-prerequisites-matter-for-multi-team-organizations)
 2. [Assess Your Readiness Level](#assess-your-readiness-level)
 3. [Three Key Prerequisites](#three-key-prerequisites)
 4. [What to Do Based on Your Readiness](#what-to-do-based-on-your-readiness)

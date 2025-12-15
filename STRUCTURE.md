@@ -1,6 +1,7 @@
 ---
-sidebar_position: 101
+sidebar_position: 2
 title: Repository Structure
+sidebar_label: Structure
 ---
 
 # Repository Structure

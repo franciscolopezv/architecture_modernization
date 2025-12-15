@@ -1,6 +1,7 @@
 ---
-sidebar_position: 102
+sidebar_position: 1
 title: How to Use This Playbook
+sidebar_label: Usage Guide
 ---
 
 # How to Use This Playbook
