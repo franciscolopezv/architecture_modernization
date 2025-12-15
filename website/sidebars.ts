@@ -29,6 +29,17 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+  guideSidebar: [
+    {
+      type: 'category',
+      label: 'Guides',
+      items: [
+        'USAGE',
+        'STRUCTURE',
+        'ABOUT',
+      ],
+    },
+  ],
 };
 
 export default sidebars;
