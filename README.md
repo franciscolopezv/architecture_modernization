@@ -89,7 +89,7 @@ The patterns in this playbook work best when:
 - **Clear ownership** exists for services and data
 - **Leadership supports** incremental modernization
 
-**If you have multiple teams but these prerequisites are not met, start with [01-strategy/prerequisites.md](01-strategy/prerequisites.md).** Building or evolving architecture without organizational alignment often results in a distributed monolith.
+**If you have multiple teams but these prerequisites are not met, start with [prerequisites](strategy/prerequisites).** Building or evolving architecture without organizational alignment often results in a distributed monolith.
 
 **If you're a small team (1-3 people), you can skip the prerequisites and go directly to the patterns and principles.**
 
@@ -125,8 +125,8 @@ Vision, prerequisites, team topologies, reference architecture, and maturity mod
 
 ### 02-principles/ ✅
 Architecture principles that guide decisions.
-- [principles.md](02-principles/principles.md) - Core principles with examples
-- [domain-ownership-guide.md](02-principles/domain-ownership-guide.md) - Identifying domain boundaries
+- [Core Principles](principles) - Architecture principles with examples
+- [domain-ownership-guide.md](principles/domain-ownership-guide) - Identifying domain boundaries
 - [data-ownership-guide.md](02-principles/data-ownership-guide.md) - Data sharing patterns
 - [contract-first-guide.md](02-principles/contract-first-guide.md) - API and event contracts
 
@@ -177,7 +177,7 @@ Real-world case studies (sanitized).
    - Migration path from current to target state
    - Success indicators to measure progress
 
-4. **Learn the principles** - Read [principles.md](02-principles/principles.md) to understand the design principles that guide all decisions.
+4. **Learn the principles** - Read [principles](principles) to understand the design principles that guide all decisions.
 
 5. **Validate team structure** - Review [team-topologies.md](01-strategy/team-topologies.md) to ensure your team structure supports independent flow.
 
