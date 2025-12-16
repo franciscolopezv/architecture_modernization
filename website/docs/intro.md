@@ -19,7 +19,7 @@ Patterns, processes, and principles for designing and evolving server-side archi
 ### Pick Your Situation
 
 **🌱 Building a Greenfield Service**  
-Starting fresh? Begin with [vision.md](strategy/vision) → [principles](principles) → [target-architecture.md](strategy/target-architecture). Apply good patterns from day one: clear boundaries, contract-first APIs, owned data stores.
+Starting fresh? Begin with [vision.md](strategy/vision) → [principles](principles) → [target-architecture.md](reference-architecture/target-architecture). Apply good patterns from day one: clear boundaries, contract-first APIs, owned data stores.
 
 **🔧 Modernizing One Slice of a Monolith**  
 Extracting a domain? Start with [domain-ownership-guide.md](principles/domain-ownership-guide) to identify bounded contexts, then use the strangler pattern. One domain at a time. [See prerequisites if you have 4+ teams →](strategy/prerequisites)
@@ -45,12 +45,14 @@ Full structure: [STRUCTURE.md](STRUCTURE)
 
 ## 🎯 Who This Is For
 
-**Small teams (1-3):** Use the patterns and principles. Skip organizational prerequisites - you likely have clear ownership already.
+**Small teams (1-2 teams):** Default to a **Modular Monolith**. Microservices introduce distributed systems overhead (operability, debugging, deployments, schema governance). If you don't need independent deployment across multiple teams, a modular monolith delivers faster value with less risk. **The principles still apply** - domain boundaries, contract-first thinking, data ownership, observability, and incremental modernization are architecture principles, not microservices-only rules.
 
-**Medium/large orgs (4+ teams):** Full playbook applies. Start with [prerequisites.md](strategy/prerequisites) to ensure organizational alignment. Without it, you risk creating a distributed monolith.
+**Growing teams (3-5 teams):** Consider microservices when you have clear domain boundaries and need independent deployment. Start with the most critical domains. Use this playbook to avoid common pitfalls.
+
+**Medium/large orgs (6+ teams):** Full playbook applies. Start with [prerequisites.md](strategy/prerequisites) to ensure organizational alignment. Without it, you risk creating a distributed monolith.
 
 **Use this if you:**
-- Want to build new services with good architecture from the start
+- Want to build new systems with good architecture from the start (monolith or microservices)
 - Need to modernize legacy systems incrementally
 - Have microservices but too many cross-team dependencies
 - Want faster deployments with fewer incidents

@@ -38,7 +38,7 @@ Start with [vision.md](01-strategy/vision.md) to understand:
 
 ### 2. See the Reference Architecture
 
-Review [target-architecture.md](01-strategy/target-architecture.md) to understand the **reference architecture**:
+Review [target-architecture.md](reference-architecture/target-architecture) to understand the **reference architecture**:
 
 **Why this matters:**
 - Provides a north star - all teams work toward the same architectural vision

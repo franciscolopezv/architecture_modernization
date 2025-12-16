@@ -345,7 +345,7 @@ After 3 years: Lead time 67% worse, incidents 400% higher, costs 140% higher tha
 
 Proceed to:
 1. [vision.md](vision) - Understand the target state
-2. [target-architecture.md](target-architecture) - See the goal architecture
+2. [target-architecture.md](../reference-architecture/target-architecture) - See the goal architecture
 3. [principles.md](../principles) - Learn the guiding principles
 
 ### If Prerequisites Are Not Met

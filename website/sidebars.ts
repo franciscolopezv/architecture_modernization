@@ -11,7 +11,6 @@ const sidebars: SidebarsConfig = {
         'strategy/vision',
         'strategy/prerequisites',
         'strategy/team-topologies',
-        'strategy/target-architecture',
         'strategy/maturity-model',
       ],
     },
@@ -27,6 +26,17 @@ const sidebars: SidebarsConfig = {
         'principles/domain-ownership-guide',
         'principles/data-ownership-guide',
         'principles/contract-first-guide',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Reference Architecture',
+      collapsed: false,
+      items: [
+        'reference-architecture/target-architecture',
+        'reference-architecture/patterns',
+        'reference-architecture/guardrails',
+        'reference-architecture/anti-patterns',
       ],
     },
     {

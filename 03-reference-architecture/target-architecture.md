@@ -11,11 +11,13 @@ This document describes a **reference architecture** for server-side systems. Us
 
 > **Important**: You will reach this architecture **incrementally** over 12-36 months using the strangler pattern. Don't try to build everything at once.
 
+> **Note on Modular Monoliths**: Small teams (1-2) should default to a **modular monolith** rather than microservices. The principles in this playbook (domain boundaries, contracts, data ownership, observability) apply equally to modular monoliths. The architecture layers can be implemented as modules within a single deployable unit. Microservices add distributed systems complexity (operability, debugging, schema governance) that only pays off when you need independent deployment across multiple teams.
+
 ---
 
 ## Why This Architecture?
 
-This architecture enables the outcomes described in [vision.md](vision.md):
+This architecture enables the outcomes described in [vision.md](../strategy/vision):
 
 **Enables Domain APIs:**
 - Clear service boundaries aligned to business domains
@@ -118,8 +120,19 @@ What makes this architecture effective:
 
 **Key patterns:**
 - Composition over orchestration (call multiple services, aggregate responses)
-- No business logic (just aggregation and transformation)
+- No domain business rules (only channel concerns, composition, and policy enforcement)
 - Contract-first (OpenAPI or GraphQL SDL)
+
+**What belongs in BFFs:**
+- Presentation shaping (format data for specific clients)
+- Channel-specific policies (rate limits, caching, coarse authorization checks)
+- Call orchestration (coordinate multiple domain service calls)
+- Response aggregation and transformation
+
+**What does NOT belong in BFFs:**
+- Domain business rules (pricing, validation, state transitions)
+- Data persistence (no direct database access)
+- Complex workflows (use domain services or sagas)
 
 **Technology examples:**
 - REST: Spring Boot, FastAPI, Express.js, ASP.NET Core
@@ -308,85 +321,6 @@ graph TB
 
 ---
 
-## Technology Decision Guidance
-
-The technology examples above are **illustrative, not prescriptive**. Choose based on:
-
-**Organizational Context:**
-- Existing skills and experience
-- Cloud provider (if committed)
-- Licensing and cost constraints
-- Support and community
-
-**Technical Requirements:**
-- Scale and performance needs
-- Compliance and security requirements
-- Integration with existing systems
-- Operational complexity
-
-**Decision Framework:**
-
-| Layer | Choose REST when... | Choose GraphQL when... | Choose gRPC when... |
-|-------|-------------------|---------------------|-------------------|
-| **BFF** | Simple CRUD, public APIs | Flexible querying, mobile apps | Not recommended (use REST/GraphQL) |
-| **Domain Services** | Standard choice, broad tooling | Not recommended (use REST) | High performance, internal only |
-
-| Layer | Choose SQL when... | Choose NoSQL when... |
-|-------|------------------|-------------------|
-| **Domain Data** | Relational data, ACID needed | Document model, high scale |
-
-| Layer | Choose Kafka when... | Choose RabbitMQ when... | Choose Cloud Events when... |
-|-------|-------------------|---------------------|----------------------|
-| **Events** | High throughput, replay needed | Simpler use cases, routing | Cloud-native, managed service |
-
-**Recommendation:** Start with simpler options (REST, SQL, managed services) and add complexity only when needed.
-
----
-
-## Core Patterns by Layer
-
-### Edge Patterns
-- **Zero-trust security**: Validate every request, never trust internal network
-- **JWT validation**: Verify tokens at gateway, propagate claims downstream
-- **Rate limiting**: Per-client quotas to prevent abuse
-- **Request validation**: Reject malformed requests early
-
-### BFF Patterns
-- **Composition**: Call multiple services, aggregate responses
-- **Caching**: Cache responses to reduce backend load
-- **Timeout management**: Set aggressive timeouts, fail fast
-- **Error handling**: Translate backend errors to client-friendly messages
-
-### Domain Service Patterns
-- **Hexagonal architecture**: Separate business logic from infrastructure
-- **Outbox pattern**: Publish events reliably without dual writes
-- **Idempotent commands**: Use idempotency keys to prevent duplicates
-- **Optimistic concurrency**: Use version numbers to prevent conflicts
-- **Domain events**: Publish facts about state changes
-
-### Event Patterns
-- **Event versioning**: Include version in event envelope
-- **Schema evolution**: Add fields, never remove (backward compatibility)
-- **Dead-letter queues**: Capture failed messages for investigation
-- **Idempotent consumers**: Handle duplicate events gracefully
-- **Replay capability**: Rebuild projections from event history
-
-### Data Patterns
-- **Single writer**: One service owns writes to a database
-- **CQRS**: Separate read and write models when patterns diverge
-- **Event-driven projections**: Build read models by consuming events
-- **Soft deletes**: Mark as deleted, don't physically delete (audit trail)
-- **Data quality checks**: Validate data at boundaries
-
-### Resilience Patterns
-- **Circuit breakers**: Stop calling failing services
-- **Retries with jitter**: Retry failed requests with exponential backoff
-- **Timeouts**: Set deadlines for all operations
-- **Bulkheads**: Isolate resources to prevent cascade failures
-- **Graceful degradation**: Provide reduced functionality when dependencies fail
-
----
-
 ## Reference Architecture Diagram
 
 ### Logical View
@@ -421,9 +355,12 @@ graph TB
         EventBackbone[Event Backbone<br/>Kafka / Pulsar / EventBridge]
     end
     
-    subgraph ReadModels["Read Models & Integration"]
-        Projections[Read Models /<br/>Projections]
-        Legacy[Legacy Systems<br/>via ACL]
+    subgraph ReadModels["Read Models (CQRS)"]
+        Projections[Projections<br/>Search / Cache]
+    end
+    
+    subgraph LegacyIntegration["Legacy Integration / ACL"]
+        Legacy[Legacy Systems<br/>ESB / MQ / Files<br/>via Anti-Corruption Layer]
     end
     
     Clients --> Gateway
@@ -446,15 +383,22 @@ graph TB
     OrderSvc -.->|publishes events| EventBackbone
     CustomerSvc -.->|publishes events| EventBackbone
     
-    EventBackbone --> Projections
-    EventBackbone --> Legacy
+    EventBackbone -.->|async| Projections
+    EventBackbone -.->|async| Legacy
+    
+    RestAPI -.->|queries| Projections
+    GraphQLAPI -.->|queries| Projections
+    
+    PaymentSvc -->|sync calls| Legacy
+    OrderSvc -->|sync calls| Legacy
     
     style Edge fill:#e1f5ff
     style Events fill:#e1f5ff
     style BFF fill:#fff4e1
     style Domains fill:#fff4e1
     style Data fill:#f0f0f0
-    style ReadModels fill:#f0f0f0
+    style ReadModels fill:#e8f5e9
+    style LegacyIntegration fill:#fff3e0
 ```
 
 ### Physical View (with Team Boundaries)
@@ -548,7 +492,7 @@ You won't build this all at once. Typical progression:
 - Complete legacy decommissioning
 - Focus on operational excellence
 
-**See [maturity-model.md](maturity-model.md) for detailed progression.**
+**See [maturity-model.md](../strategy/maturity-model) for detailed progression.**
 
 ---
 
@@ -579,72 +523,15 @@ You've achieved the target architecture when:
 
 ---
 
-## Anti-Patterns This Architecture Prevents
+## Design Guidance
 
-**Distributed Monolith:**
-- ❌ Microservices that can't deploy independently
-- ✅ Clear domain boundaries with versioned contracts
+When implementing this architecture:
 
-**Shared Database Coupling:**
-- ❌ Multiple services reading/writing same tables
-- ✅ Each service owns its data, shares via APIs/events
+**Patterns:** See [Core Patterns by Layer](patterns) for proven implementation patterns for each layer (edge, BFF, domain services, events, data, resilience).
 
-**God Services:**
-- ❌ One service handling multiple domains
-- ✅ One service per bounded context
+**Guardrails:** Follow [Guardrails for Teams](guardrails) for non-negotiable rules about domain boundaries, contracts, communication, data ownership, operability, and deployment.
 
-**Synchronous Coupling:**
-- ❌ Long chains of synchronous calls
-- ✅ Event-driven integration for cross-domain workflows
-
-**Platform as Bottleneck:**
-- ❌ Platform team does work "for" domain teams
-- ✅ Self-service capabilities with clear SLAs
-
-**No Observability:**
-- ❌ "Check the logs" debugging
-- ✅ Structured logs, metrics, traces with correlation IDs
-
----
-
-## Guardrails for Teams
-
-When designing services, follow these rules:
-
-**Domain Boundaries:**
-- One team owns each domain service
-- No shared databases across domains
-- Share data via APIs or events, never direct DB access
-
-**Contracts:**
-- Every API has OpenAPI spec
-- Every event has AsyncAPI spec
-- Version all contracts (semantic versioning)
-- Breaking changes require major version bump
-
-**Communication:**
-- Prefer async (events) for cross-domain workflows
-- Use sync (APIs) only for critical paths with strict SLAs
-- Set timeouts on all external calls
-- Implement circuit breakers for resilience
-
-**Data:**
-- One writer per database (single ownership)
-- Use CQRS when read/write patterns diverge significantly
-- Publish events for all state changes
-- Make consumers idempotent
-
-**Operability:**
-- Expose health and readiness endpoints
-- Define SLOs with error budgets
-- Emit structured logs with correlation IDs
-- Provide runbooks for common issues
-
-**Deployment:**
-- Use progressive delivery (canary, blue/green)
-- No big-bang cutovers
-- Keep rollback capability
-- Monitor SLOs during rollout
+**Anti-Patterns:** Review [Anti-Patterns to Avoid](anti-patterns) to learn from common mistakes (distributed monoliths, shared databases, god services, synchronous coupling, missing observability).
 
 ---
 
@@ -652,8 +539,9 @@ When designing services, follow these rules:
 
 After understanding the target architecture:
 
-1. **Assess current state** - Use [maturity-model.md](maturity-model) to evaluate where you are today
-2. **Review principles** - Read [principles.md](../principles) to understand design principles
+1. **Review design guidance** - Read [patterns](patterns), [guardrails](guardrails), and [anti-patterns](anti-patterns)
+2. **Assess current state** - Use [maturity-model](../strategy/maturity-model) to evaluate where you are today
+3. **Review principles** - Read the Principles section to understand design principles
 
 ---
 

@@ -17,7 +17,7 @@ This document describes a **reference architecture** for server-side systems. Us
 
 ## Why This Architecture?
 
-This architecture enables the outcomes described in [vision.md](vision.md):
+This architecture enables the outcomes described in [vision.md](../strategy/vision):
 
 **Enables Domain APIs:**
 - Clear service boundaries aligned to business domains
@@ -492,7 +492,7 @@ You won't build this all at once. Typical progression:
 - Complete legacy decommissioning
 - Focus on operational excellence
 
-**See [maturity-model.md](maturity-model.md) for detailed progression.**
+**See [maturity-model.md](../strategy/maturity-model) for detailed progression.**
 
 ---
 
@@ -527,11 +527,11 @@ You've achieved the target architecture when:
 
 When implementing this architecture:
 
-**Patterns:** See [Core Patterns by Layer](../reference-architecture/patterns) for proven implementation patterns for each layer (edge, BFF, domain services, events, data, resilience).
+**Patterns:** See [Core Patterns by Layer](patterns) for proven implementation patterns for each layer (edge, BFF, domain services, events, data, resilience).
 
-**Guardrails:** Follow [Guardrails for Teams](../reference-architecture/guardrails) for non-negotiable rules about domain boundaries, contracts, communication, data ownership, operability, and deployment.
+**Guardrails:** Follow [Guardrails for Teams](guardrails) for non-negotiable rules about domain boundaries, contracts, communication, data ownership, operability, and deployment.
 
-**Anti-Patterns:** Review [Anti-Patterns to Avoid](../reference-architecture/anti-patterns) to learn from common mistakes (distributed monoliths, shared databases, god services, synchronous coupling, missing observability).
+**Anti-Patterns:** Review [Anti-Patterns to Avoid](anti-patterns) to learn from common mistakes (distributed monoliths, shared databases, god services, synchronous coupling, missing observability).
 
 ---
 
@@ -539,8 +539,8 @@ When implementing this architecture:
 
 After understanding the target architecture:
 
-1. **Review design guidance** - Read [patterns](../reference-architecture/patterns), [guardrails](../reference-architecture/guardrails), and [anti-patterns](../reference-architecture/anti-patterns)
-2. **Assess current state** - Use [maturity-model](maturity-model) to evaluate where you are today
+1. **Review design guidance** - Read [patterns](patterns), [guardrails](guardrails), and [anti-patterns](anti-patterns)
+2. **Assess current state** - Use [maturity-model](../strategy/maturity-model) to evaluate where you are today
 3. **Review principles** - Read the Principles section to understand design principles
 
 ---

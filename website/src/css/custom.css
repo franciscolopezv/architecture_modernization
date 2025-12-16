@@ -130,3 +130,116 @@ table td {
   background-color: var(--ifm-background-surface-color);
   border-top: 1px solid var(--ifm-toc-border-color);
 }
+
+/* Mermaid diagram fixes */
+/* Fix for subgraph titles being cut off */
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure subgraph labels are visible and not cut off */
+.mermaid .cluster rect {
+  fill: transparent !important;
+  stroke: var(--ifm-color-primary) !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid .cluster text {
+  fill: var(--ifm-font-color-base) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+
+/* Fix text visibility in dark mode */
+[data-theme='dark'] .mermaid .nodeLabel,
+[data-theme='dark'] .mermaid .edgeLabel,
+[data-theme='dark'] .mermaid .cluster text,
+[data-theme='dark'] .mermaid text {
+  fill: #e2e8f0 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Node styling for better visibility */
+[data-theme='dark'] .mermaid .node rect,
+[data-theme='dark'] .mermaid .node circle,
+[data-theme='dark'] .mermaid .node ellipse,
+[data-theme='dark'] .mermaid .node polygon {
+  fill: #1e293b !important;
+  stroke: #60a5fa !important;
+  stroke-width: 2px !important;
+}
+
+/* Light mode node styling */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  stroke: #3b82f6 !important;
+  stroke-width: 2px !important;
+}
+
+/* Edge (arrow) styling for dark mode */
+[data-theme='dark'] .mermaid .edgePath .path {
+  stroke: #94a3b8 !important;
+  stroke-width: 2px !important;
+}
+
+[data-theme='dark'] .mermaid .arrowheadPath {
+  fill: #94a3b8 !important;
+  stroke: #94a3b8 !important;
+}
+
+/* Subgraph background colors */
+.mermaid .cluster rect[style*="fill:#e1f5ff"] {
+  fill: #dbeafe !important;
+}
+
+.mermaid .cluster rect[style*="fill:#fff4e1"] {
+  fill: #fef3c7 !important;
+}
+
+.mermaid .cluster rect[style*="fill:#f0f0f0"] {
+  fill: #f1f5f9 !important;
+}
+
+/* Dark mode subgraph backgrounds - make them dark with good contrast */
+[data-theme='dark'] .mermaid .cluster rect {
+  fill: #1e293b !important;
+  opacity: 0.8 !important;
+}
+
+/* Override specific colors in dark mode */
+[data-theme='dark'] .mermaid g[id*="Platform"] .cluster rect,
+[data-theme='dark'] .mermaid g[id*="Edge"] .cluster rect,
+[data-theme='dark'] .mermaid g[id*="Events"] .cluster rect {
+  fill: #1e3a5f !important;
+  opacity: 0.9 !important;
+}
+
+[data-theme='dark'] .mermaid g[id*="BFF"] .cluster rect,
+[data-theme='dark'] .mermaid g[id*="Domains"] .cluster rect,
+[data-theme='dark'] .mermaid g[id*="StreamTeams"] .cluster rect,
+[data-theme='dark'] .mermaid g[id*="Team"] .cluster rect {
+  fill: #3d2e1f !important;
+  opacity: 0.9 !important;
+}
+
+[data-theme='dark'] .mermaid g[id*="Data"] .cluster rect,
+[data-theme='dark'] .mermaid g[id*="ReadModels"] .cluster rect {
+  fill: #1e293b !important;
+  opacity: 0.9 !important;
+}
+
+/* Ensure diagram container has enough padding */
+.mermaid {
+  padding: 2rem 1rem;
+  overflow-x: auto;
+  background-color: transparent;
+}
+
+/* Fix for diagram being too wide */
+.docusaurus-mermaid-container {
+  text-align: center;
+  margin: 2rem 0;
+}

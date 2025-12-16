@@ -10,9 +10,13 @@ with open('docs/intro.md', 'r') as f:
 # Replace links
 replacements = {
     '(01-strategy/prerequisites.md)': '(strategy/prerequisites)',
-    '(01-strategy/target-architecture.md)': '(strategy/target-architecture)',
     '(01-strategy/vision.md)': '(strategy/vision)',
     '(01-strategy/team-topologies.md)': '(strategy/team-topologies)',
+    '(01-strategy/maturity-model.md)': '(strategy/maturity-model)',
+    '(03-reference-architecture/target-architecture.md)': '(reference-architecture/target-architecture)',
+    '(../01-strategy/vision.md)': '(../strategy/vision)',
+    '(../01-strategy/maturity-model.md)': '(../strategy/maturity-model)',
+    '(../03-reference-architecture/target-architecture)': '(../reference-architecture/target-architecture)',
     '(01-strategy/maturity-model.md)': '(strategy/maturity-model)',
     '(02-principles/principles.md)': '(principles/principles)',
     '(02-principles/domain-ownership-guide.md)': '(principles/domain-ownership-guide)',

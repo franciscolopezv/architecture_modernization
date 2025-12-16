@@ -9,12 +9,16 @@ ROOT_DIR="$( cd "$SCRIPT_DIR/.." && pwd )"
 # Create docs structure
 mkdir -p "$SCRIPT_DIR/docs/strategy"
 mkdir -p "$SCRIPT_DIR/docs/principles"
+mkdir -p "$SCRIPT_DIR/docs/reference-architecture"
 
 # Copy strategy files
 cp "$ROOT_DIR/01-strategy"/*.md "$SCRIPT_DIR/docs/strategy/"
 
 # Copy principles files
 cp "$ROOT_DIR/02-principles"/*.md "$SCRIPT_DIR/docs/principles/"
+
+# Copy reference architecture files
+cp "$ROOT_DIR/03-reference-architecture"/*.md "$SCRIPT_DIR/docs/reference-architecture/"
 
 # Copy supporting docs
 cp "$ROOT_DIR/ABOUT.md" "$SCRIPT_DIR/docs/"

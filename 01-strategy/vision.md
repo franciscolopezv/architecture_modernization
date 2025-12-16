@@ -333,7 +333,7 @@ Good server-side architecture enables:
 **Approach:**
 - Start with domain discovery (identify bounded contexts)
 - Apply principles from [principles.md](../principles)
-- Reference [target-architecture.md](target-architecture) for the goal state
+- Reference [target-architecture.md](../reference-architecture/target-architecture) for the goal state
 
 ### Evolving Existing Architecture
 
@@ -355,7 +355,7 @@ Good server-side architecture enables:
 After reading this vision:
 
 1. **Review principles** - Read [principles.md](../principles) to understand guiding principles
-2. **See the target** - Review [target-architecture.md](target-architecture) to understand the goal state
+2. **See the target** - Review [target-architecture.md](../reference-architecture/target-architecture) to understand the goal state
 3. **Check prerequisites** - If modernizing with multiple teams, read [prerequisites.md](prerequisites)
 4. **Assess maturity** - Use [maturity-model.md](maturity-model) to evaluate current state
 

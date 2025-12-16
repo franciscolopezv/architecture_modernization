@@ -15,8 +15,9 @@ This repository follows a numbered folder structure for sequential consumption.
 Vision, target architecture, maturity model, and team topologies.
 
 - **vision.md** - What good architecture looks like and why it matters
-- **target-architecture.md** - Reference architecture for server-side systems
-  - Architecture layers (Edge, BFF, Domain Services, Events, Data, Platform)
+- **team-topologies.md** - Team structure and domain alignment
+- **maturity-model.md** - Assess current state and set targets
+- **prerequisites.md** - Organizational prerequisites for multi-team environments
   - Team alignment (how Team Topologies maps to architecture)
   - Technology guidance (decision frameworks for REST vs GraphQL, SQL vs NoSQL, etc.)
   - Migration path (4-phase approach from current to target state)
@@ -43,6 +44,25 @@ Architecture principles that guide all design decisions.
 - **domain-ownership-guide.md** - Identifying and validating domain boundaries (Principle 1)
 - **data-ownership-guide.md** - Patterns for data sharing without coupling (Principle 8)
 - **contract-first-guide.md** - API and event contract design with OpenAPI/AsyncAPI (Principle 2)
+
+### 03-reference-architecture/ ✅ Complete
+
+Detailed design guidance for implementing the target architecture.
+
+- **target-architecture.md** - Reference architecture for server-side systems
+  - Architecture layers (Edge, BFF, Domain Services, Events, Data, Platform)
+  - Team alignment (how Team Topologies maps to architecture)
+  - Migration path (4-phase approach from current to target state)
+  - Success indicators (how to measure progress)
+- **patterns.md** - Core patterns by layer (edge, BFF, domain services, events, data, resilience)
+  - Proven implementation patterns for each architecture layer
+  - Technology decision guidance (REST vs GraphQL, SQL vs NoSQL, Kafka vs RabbitMQ)
+- **guardrails.md** - Non-negotiable rules for teams
+  - Domain boundaries, contracts, communication, data ownership
+  - Operability, deployment, security, testing requirements
+- **anti-patterns.md** - Common mistakes to avoid
+  - Distributed monoliths, shared databases, god services
+  - Synchronous coupling, missing observability, big-bang migrations
 
 ### 03-process/ 🚧 Coming Soon
 
