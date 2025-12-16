@@ -8,7 +8,7 @@ sidebar_label: About
 
 ## Why This Exists
 
-This playbook emerged from working on multiple architecture modernization initiatives across different organizations. Common patterns of success and failure became clear:
+This playbook emerged from working on multiple architecture modernization initiatives across different organizations. Over time, common patterns of success and failure became clear.
 
 **Problems observed:**
 - Teams building microservices without clear domain boundaries, creating distributed monoliths that are harder to maintain than the original monolith
@@ -17,33 +17,45 @@ This playbook emerged from working on multiple architecture modernization initia
 - Missing contracts (OpenAPI, AsyncAPI) leading to breaking changes and integration failures
 - Lack of observability making it difficult to understand system behavior and debug issues across service boundaries
 
-**What this optimizes for:**
-- **Flow** - Teams can deliver features independently without waiting on other teams or coordinating deployments
-- **Ownership** - Clear boundaries and accountability, one team per domain with end-to-end responsibility
-- **Contracts** - Explicit, versioned interfaces (OpenAPI, AsyncAPI) that prevent breaking changes and enable safe evolution
-- **Operability** - Built-in observability (logs, metrics, traces), SLOs, and runbooks that make systems understandable and debuggable
+**What this playbook optimizes for:**
+- **Flow** — teams can deliver independently without excessive coordination or release coupling
+- **Ownership** — clear boundaries and accountability (one team per domain, end-to-end responsibility)
+- **Contracts** — explicit, versioned interfaces (OpenAPI, AsyncAPI) that enable safe evolution
+- **Operability** — built-in observability (logs, metrics, traces), SLOs, and runbooks that make systems understandable and debuggable
 
-**What this helps teams avoid:**
-- Building a distributed monolith where services exist but can't deploy independently
-- Conway's Law failures where unclear team boundaries create unclear service boundaries
-- Data coupling through shared databases that prevents independent evolution
-- Integration failures from missing or poorly defined contracts
-- Operational blindness from inadequate observability
-
-This playbook documents patterns that have worked in practice to address these challenges. It's not theoretical - it's based on real implementations, real failures, and real successes.
+**Common failure modes this helps avoid:**
+- “Microservices” that cannot deploy independently (distributed monolith)
+- Service boundaries that don’t match team boundaries (Conway’s Law in practice)
+- Data coupling through shared databases
+- Breaking changes caused by implicit or undocumented contracts
+- Operational blindness due to inconsistent telemetry and lack of SLOs
 
 ---
 
-## ⚠️ Important Disclaimer
+## Why This Matters Even More With AI
 
-**This is not a silver bullet.** This playbook does not pretend to solve all architectural challenges, but rather serves as a reference from past experience to guide your own journey.
+With generative AI and LLMs, producing code is becoming faster and more accessible. AI can be a strong implementation accelerator, but the team still owns the architectural decisions and trade-offs.
+
+The critical skills are:
+
+- **Where boundaries should be** (domains, services, modules)
+- **How components should communicate** (sync vs async, APIs vs events, contracts)
+- **What trade-offs to make** (consistency vs availability, complexity vs simplicity)
+- **How to ensure operability** (observability, resilience, security)
+
+This playbook is a reference for those decisions. Without clear principles and patterns, AI can generate code quickly—but it may be the wrong code, in the wrong place, using the wrong patterns.
+
+---
+
+## Important Disclaimer
+
+**This is not a silver bullet.** This playbook does not pretend to solve all architectural challenges. It is a reference to guide your journey.
 
 ### What This Is
 
-- A distillation of several years of experience working on architecture modernization across multiple projects
+- A distillation of experience working on architecture modernization across multiple projects
 - Patterns and principles that have worked in practice, not just theory
-- A living document that continues to evolve based on real-world learnings
-- A personal knowledge base to document what I've learned and avoid repeating mistakes
+- A living document that evolves based on real-world learnings
 - A coaching and advisory tool I use when working with teams
 
 ### What This Is Not
@@ -53,30 +65,25 @@ This playbook documents patterns that have worked in practice to address these c
 - A replacement for critical thinking and context-specific decisions
 - The only way to do things
 
-### Expect Opinions
+### How To Use This
 
-This playbook is opinionated based on what has worked in my experience. Your context may differ. Use what makes sense, adapt what doesn't, and discard what's irrelevant.
-
-### Continuous Evolution
-
-Architecture is a journey, not a destination. This playbook will continue to evolve as I learn more, encounter new challenges, and discover better approaches. Feedback and contributions are welcome.
-
-### Use With Judgment
-
-Every organization, team, and system is unique. Apply these patterns pragmatically, not dogmatically. When in doubt, start small, validate, and adjust.
+- Expect opinions. Use what fits, adapt what doesn’t, and discard what’s irrelevant.
+- Start small, validate, and adjust.
+- Document exceptions (e.g., ADRs) so trade-offs remain explicit.
+- Contributions and feedback are welcome.
 
 ---
 
 ## Technology Approach
 
-This playbook is **technology-agnostic** at the documentation level. It defines patterns and processes that can be implemented with various tech stacks:
+This playbook is **technology-agnostic** at the documentation level. It defines patterns and processes that can be implemented with various stacks:
 
-- **API patterns:** REST (OpenAPI) or gRPC (Protobuf)
-- **Event patterns:** AsyncAPI-described events
-- **Data patterns:** Relational or document stores (service-owned)
-- **Observability:** Logs, metrics, traces with correlation IDs
+- **API patterns:** REST (OpenAPI) or gRPC (Protobuf); GraphQL where it fits (often for read aggregation)
+- **Event patterns:** events described with AsyncAPI
+- **Data patterns:** relational or document stores (service-owned)
+- **Observability:** logs, metrics, traces with correlation IDs
 
-Concrete implementations (Helm charts, CI pipelines, specific frameworks) should live in separate repositories but reference patterns defined here.
+Concrete implementations (Helm charts, CI pipelines, specific frameworks) should live in separate repositories, but reference the patterns defined here.
 
 ---
 
@@ -94,9 +101,11 @@ Concrete implementations (Helm charts, CI pipelines, specific frameworks) should
 ### Out of Scope
 
 - Frontend, mobile, or client-side architecture (separate playbooks)
-- Infrastructure and cloud migration strategy (covered elsewhere)
+- Cloud landing zone / foundation (networking, accounts/subscriptions, base controls)
 - Data warehouse and analytics platforms (separate data strategy)
-- Internal tools and backoffice systems (lower priority)
+- Non-critical internal tools (lower priority)
+
+> **Note:** This playbook assumes a baseline runtime platform exists and focuses on application architecture plus the platform capabilities consumed by teams (CI/CD, observability, API gateways, event backbone).
 
 ---
 

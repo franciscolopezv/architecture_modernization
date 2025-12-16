@@ -2,9 +2,10 @@
 
 Patterns, processes, and principles for designing and evolving server-side architecture—whether you're building new systems, modernizing legacy, or fixing a distributed monolith.
 
+>
 **Core topics:** Domain-driven design • Contract-first APIs • Event-driven architecture • Data ownership • Observability • Team organization
-
-> **Technology-agnostic guidance** based on real-world experience. Not a silver bullet—use what fits your context and adapt the rest.  
+>
+> **Technology-agnostic guidance** based on real-world experience. Not a silver bullet—use what fits your context and adapt the rest. 
 > [About this playbook →](ABOUT)
 
 ---

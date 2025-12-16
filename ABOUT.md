@@ -37,6 +37,7 @@ This playbook emerged from working on multiple architecture modernization initia
 With generative AI and LLMs, producing code is becoming faster and more accessible. AI can be a strong implementation accelerator, but the team still owns the architectural decisions and trade-offs.
 
 The critical skills are:
+
 - **Where boundaries should be** (domains, services, modules)
 - **How components should communicate** (sync vs async, APIs vs events, contracts)
 - **What trade-offs to make** (consistency vs availability, complexity vs simplicity)
