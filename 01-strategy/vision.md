@@ -303,7 +303,7 @@ These definitions align with [DORA metrics](https://dora.dev/guides/dora-metrics
 - **Paved road platform** - Self-service capabilities, golden paths, remove friction
 - **Pragmatic trade-offs** - Choose patterns based on context, document exceptions in ADRs
 
-See [principles](../principles/principles) for detailed guidance on applying these in practice.
+See the Principles section for detailed guidance on applying these in practice.
 
 ---
 
@@ -343,7 +343,7 @@ The target outcomes above enable the business strategy and should be measured vi
 
 **Approach:**
 - Start with domain discovery (identify bounded contexts)
-- Apply principles from [principles](../principles/principles)
+- Apply principles from the Principles section
 - Reference [target architecture](../reference-architecture/target-architecture) for the goal state
 
 ### Evolving Existing Architecture
@@ -365,7 +365,7 @@ The target outcomes above enable the business strategy and should be measured vi
 
 After reading this vision:
 
-1. **Review principles** - Read [principles](../principles/principles) to understand guiding principles
+1. **Review principles** - Read the Principles section to understand guiding principles
 2. **See the target** - Review [target architecture](../reference-architecture/target-architecture) to understand the goal state
 3. **Check prerequisites** - If modernizing with multiple teams, read [prerequisites](prerequisites)
 4. **Assess maturity** - Use [maturity model](maturity-model) to evaluate current state
