@@ -9,6 +9,27 @@ This document articulates **what good server-side architecture looks like**, **w
 
 This is a pragmatic guide for how server-side architecture should be designed to enable fast, safe, and sustainable delivery.
 
+> **TL;DR**
+> - Apply the same principles whether you start with a modular monolith or microservices: **domain boundaries, contracts, data ownership, observability**.
+> - **Default to a modular monolith for 1–2 teams**; split into services when clear triggers appear.
+> - Track progress via **DORA metrics** and **SLOs** (and baseline before setting targets).
+
+---
+
+## Monolith or Microservices?
+
+**For small teams (1-2 teams): Start with a modular monolith.**
+
+The principles in this playbook (domain boundaries, contracts, data ownership, observability) apply equally to modular monoliths and microservices. A well-structured monolith with clear module boundaries is better than poorly-designed microservices, and it provides a clean path to extract services later.
+
+**When to split into services:**
+- **Team scaling**: Multiple teams need independent deployment
+- **Release coupling**: Changes in one area force releases in others
+- **Reliability isolation**: Failures in one domain shouldn't affect others
+- **Compliance/data residency**: Different domains have different regulatory requirements
+
+Microservices add distributed systems complexity (operability, debugging, schema governance) that only pays off when you have clear triggers. Start simple, split when needed.
+
 ---
 
 ## What Good Architecture Looks Like
@@ -18,32 +39,28 @@ Good server-side architecture has these characteristics:
 **Clear Domain Boundaries:**
 - Services represent business capabilities (Orders, Payments, Inventory), not technical layers
 - Each domain has clear ownership and accountability
-- Boundaries are stable and well-understood by both business and engineering
 
 **Explicit Contracts:**
 - APIs and events are versioned contracts (OpenAPI, AsyncAPI)
-- Changes are deliberate and managed
 - Consumers depend on contracts, not implementation details
 
 **Data Ownership:**
 - Each service owns its data (no shared databases)
 - Data is shared via APIs or events, not direct database access
-- Clear single writer per data store
 
 **Loose Coupling:**
 - Services can deploy independently
-- Changes in one service don't break others
-- Asynchronous integration where appropriate
+- Prefer asynchronous integration where it reduces coupling and improves resilience
 
 **Built-in Observability:**
 - Structured logs, metrics, and traces are standard
 - SLOs defined and monitored
-- Easy to debug issues across service boundaries
 
 **Platform-Enabled:**
-- Self-service capabilities (CI/CD, observability, infrastructure)
-- Standard patterns and golden paths
-- Teams focus on business logic, not infrastructure
+- Self-service capabilities (CI/CD, observability, runtime provisioning)
+- Standard patterns and golden paths so teams can focus on business logic
+
+> A service is not “done” until it has a clear owner and basic operability: SLOs, dashboards/alerts, and a runbook for common failures.
 
 ---
 
@@ -63,7 +80,7 @@ Systems with poor architecture exhibit these problems:
 - **Slow delivery**: New features take weeks or months due to coordination overhead and fragile systems
 - **High risk**: Changes frequently break unexpected parts of the system
 - **Security exposure**: Difficulty remediating vulnerabilities across fragmented landscape
-- **Poor visibility**: Limited ability to reason about data flows, reliability, and cost
+- **Poor visibility**: Limited ability to reason about data flows, blast radius, reliability, and cost
 - **Talent challenges**: Hard to attract and retain engineers who want to work with modern technology
 
 **Cost Implications:**
@@ -117,7 +134,7 @@ Good server-side architecture enables these outcomes:
 **What this means:**
 - Standard templates and patterns (golden paths)
 - Discoverable services via developer portal (e.g., Backstage, custom portal)
-- Self-service platform capabilities (CI/CD, observability, infrastructure)
+- Self-service platform capabilities (CI/CD, observability, runtime provisioning)
 - Clear documentation and examples
 
 **Business value:**
@@ -188,9 +205,35 @@ Measure progress with these indicators:
 - Percentage of services using standard patterns (target: 80%+)
 
 **Business Impact:**
-- Time to market for new features (reduced by 50%+)
-- Incident reduction (50%+ fewer customer-impacting incidents)
-- Cost per transaction (reduced through efficiency)
+- Time to market for new features (target: material reduction)
+- Incident reduction (target: fewer customer-impacting incidents)
+- Cost per transaction (target: reduced through efficiency)
+
+### Measurement Rules
+
+These definitions align with [DORA metrics](https://dora.dev/guides/dora-metrics-four-keys/) for measuring software delivery performance:
+
+**Lead time for changes:**
+- Measure: Commit to production (code merged → deployed and serving traffic)
+
+**Deployment frequency:**
+- Measure: Production deploys per service per week
+- Count: Successful deployments only (not attempts)
+
+**Change failure rate:**
+- Measure: Deployments requiring rollback, hotfix, or causing incident within 48 hours
+- Calculate: (Failed deployments / Total deployments) × 100
+
+**Mean time to recovery (MTTR):**
+- Measure: Time to restore SLO, not just "service up"
+- Start: When SLO violation detected
+- End: When SLO restored to acceptable level
+
+**Approach:**
+1. Baseline current state (measure for 4-8 weeks)
+2. Set realistic targets based on baseline
+3. Track trends, not absolute numbers
+4. Review quarterly and adjust targets
 
 ---
 
@@ -216,6 +259,7 @@ Measure progress with these indicators:
 **Platform Capabilities:**
 - CI/CD pipelines and deployment automation
 - Observability stack (logs, metrics, traces)
+- Runtime provisioning and environment management
 - Service templates and golden paths
 
 ### Out of Scope (Separate Initiatives)
@@ -230,15 +274,19 @@ Measure progress with these indicators:
 - Analytics and BI platform modernization
 - (Covered in separate data strategy)
 
-**Internal Tools:**
-- Purely internal tools not on critical path
-- Admin consoles and backoffice systems
-- (Lower priority, address after core systems)
+**Non-Critical Internal Tools:**
+- Tier-3 internal utilities not on critical path
+- Non-customer-facing admin tools
+- (Lower priority, address after core customer-facing systems)
+- Note: Business-critical backoffice systems should be in scope
 
-**Infrastructure:**
-- Cloud migration strategy (assumed prerequisite or parallel effort)
-- Network and security infrastructure
+**Cloud Foundation:**
+- Cloud landing zone and account/subscription structure
+- Network architecture and connectivity
+- Base security controls and compliance frameworks
 - (Covered in separate infrastructure strategy)
+
+> **Note:** This playbook assumes a baseline runtime platform exists (e.g., Kubernetes, ECS, or managed compute) and focuses on application architecture patterns and platform capabilities consumed by teams (CI/CD, observability, API gateways, event backbone).
 
 ---
 
@@ -248,61 +296,24 @@ Measure progress with these indicators:
 >
 > It is about **clear boundaries, explicit contracts, and enabling teams** to deliver value safely and quickly.
 
-### Key Principles
+**How we make decisions:**
+- **Domain-first ownership** - Organize around business capabilities, align teams to domains
+- **Evolutionary change** - Strangler pattern for legacy, small batches, validate before scaling
+- **Operability by default** - SLOs, telemetry, runbooks are standard, not optional
+- **Paved road platform** - Self-service capabilities, golden paths, remove friction
+- **Pragmatic trade-offs** - Choose patterns based on context, document exceptions in ADRs
 
-**Domain-First:**
-- Organize around business capabilities, not technical layers
-- Boundaries reflect how the business thinks about the problem
-- Services represent cohesive business concepts
-
-**Evolutionary:**
-- Architecture evolves incrementally, not through big-bang rewrites
-- Strangler pattern for legacy: wrap, replace, retire in phases
-- Validate each step before proceeding
-- Greenfield projects start with good boundaries from day one
-
-**Business Value First:**
-- Architecture serves business goals, not the other way around
-- Deliver business outcomes, not just technical improvements
-- Measure success in business terms (speed, reliability, cost)
-
-**Team Empowerment:**
-- Align teams to domains (not technical layers)
-- Provide self-service platforms (not bottlenecks)
-- Enable teams to move fast with safety
-- Clear ownership and accountability
-
-**Pragmatic, Not Dogmatic:**
-- Choose patterns based on context, not hype
-- Simple solutions over complex ones
-- Exceptions are okay when justified (document in ADRs)
-- Technology choices should fit your constraints
+See [principles](../principles/principles) for detailed guidance on applying these in practice.
 
 ---
 
 ## Alignment with Business Strategy
 
-Good server-side architecture enables:
-
-**Faster Innovation:**
-- Launch new products and features in weeks, not months
-- Experiment and iterate quickly
-- Respond to market changes rapidly
-
-**Operational Excellence:**
-- Reduce incidents and improve customer experience
-- Lower operational costs through efficiency
-- Scale systems to meet demand
-
-**Risk Management:**
-- Reduce security and compliance exposure
-- Improve system resilience and disaster recovery
-- Make change predictable and safe
-
-**Competitive Advantage:**
-- Modern tech stack attracts top talent
-- Ability to integrate with partners and ecosystems
-- Foundation for AI/ML and advanced capabilities
+The target outcomes above enable the business strategy and should be measured via delivery and reliability metrics:
+- **Innovation**: lead time and deployment frequency
+- **Operational excellence**: availability, change failure rate, MTTR
+- **Risk**: reduction of unsupported runtimes and security exposure, plus reliability trends
+- **Cost**: reduced duplication and operational overhead (often reflected in cost per transaction)
 
 ---
 
@@ -318,8 +329,8 @@ Good server-side architecture enables:
 - Frequent incidents and long recovery times
 
 **Approach:**
-- Start with [prerequisites.md](prerequisites) to ensure organizational readiness
-- Use [maturity-model.md](maturity-model) to assess current state
+- Start with [prerequisites](prerequisites) to ensure organizational readiness
+- Use [maturity model](maturity-model) to assess current state
 - Typical timeline: 12-36 months
 
 ### Building New Systems
@@ -332,8 +343,8 @@ Good server-side architecture enables:
 
 **Approach:**
 - Start with domain discovery (identify bounded contexts)
-- Apply principles from [principles.md](../principles)
-- Reference [target-architecture.md](../reference-architecture/target-architecture) for the goal state
+- Apply principles from [principles](../principles/principles)
+- Reference [target architecture](../reference-architecture/target-architecture) for the goal state
 
 ### Evolving Existing Architecture
 
@@ -354,10 +365,10 @@ Good server-side architecture enables:
 
 After reading this vision:
 
-1. **Review principles** - Read [principles.md](../principles) to understand guiding principles
-2. **See the target** - Review [target-architecture.md](../reference-architecture/target-architecture) to understand the goal state
-3. **Check prerequisites** - If modernizing with multiple teams, read [prerequisites.md](prerequisites)
-4. **Assess maturity** - Use [maturity-model.md](maturity-model) to evaluate current state
+1. **Review principles** - Read [principles](../principles/principles) to understand guiding principles
+2. **See the target** - Review [target architecture](../reference-architecture/target-architecture) to understand the goal state
+3. **Check prerequisites** - If modernizing with multiple teams, read [prerequisites](prerequisites)
+4. **Assess maturity** - Use [maturity model](maturity-model) to evaluate current state
 
 ---
 
@@ -366,14 +377,14 @@ After reading this vision:
 ### For Executives
 
 **Elevator pitch:**
-> "Good architecture reduces time-to-market by 50%, cuts incidents by half, and enables us to compete with digital-native companies. Whether modernizing or building new, following these patterns pays for itself through reduced operational costs and faster feature delivery."
+> "Good architecture enables faster time-to-market, reduces incidents, and helps us compete with digital-native companies. Whether modernizing or building new, following these patterns delivers value through reduced operational costs and faster feature delivery. We track progress via lead time, deployment frequency, and reliability metrics."
 
 **Key messages:**
 - This is about business outcomes, not just technology
 - Applies to both modernization and new development
 - Incremental approach reduces risk
 - For multi-team organizations, requires organizational alignment (Team Topologies)
-- Investment pays back through efficiency and speed
+- Investment pays back through efficiency and speed (measured via DORA metrics)
 
 ### For Engineering Teams
 
@@ -397,29 +408,29 @@ After reading this vision:
 
 ## Common Questions
 
-**Q: Is this only for modernization?**
+**Q: Is this only for modernization?**  
 A: No. These patterns apply to building new systems, modernizing legacy, or evolving existing architecture.
 
-**Q: Is this only for large enterprises?**
+**Q: Is this only for large enterprises?**  
 A: No. The principles apply to any organization. The organizational prerequisites (Team Topologies) are mainly for multi-team environments (4+ teams).
 
-**Q: How long does modernization take?**
+**Q: How long does modernization take?**  
 A: Typically 12-36 months depending on scale. New systems can start with good architecture from day one.
 
-**Q: Can features still be delivered during modernization?**
+**Q: Can features still be delivered during modernization?**  
 A: Yes. Modernization happens alongside feature delivery. Teams balance both based on priorities.
 
-**Q: What if we don't follow these patterns?**
+**Q: What if we don't follow these patterns?**  
 A: Risk of distributed monoliths, slow delivery, frequent incidents, and difficulty scaling teams. Technical debt compounds over time.
 
-**Q: Do we need to use all patterns?**
+**Q: Do we need to use all patterns?**  
 A: No. Apply patterns based on your context. Start with principles (domain boundaries, contracts, data ownership) and add complexity only when needed.
 
-**Q: What's the ROI?**
-A: Reduced operational costs, faster time-to-market, fewer incidents, and improved developer productivity. For modernization, typical payback in 18-24 months.
+**Q: What's the ROI?**  
+A: Reduced operational costs, faster time-to-market, fewer incidents, and improved developer productivity. ROI varies by context—track via DORA metrics (lead time, deployment frequency, MTTR, change failure rate) to measure progress.
 
-**Q: What are the risks?**
+**Q: What are the risks?**  
 A: Main risk is attempting modernization without organizational prerequisites (Team Topologies) in multi-team environments. This creates distributed monoliths. Follow the playbook to mitigate risks.
 
-**Q: Can we use different technologies?**
+**Q: Can we use different technologies?**  
 A: Yes. This playbook is technology-agnostic. Patterns work with any tech stack (Java, .NET, Node.js, Go, Python, etc.).

@@ -248,35 +248,15 @@ Measure progress with these indicators:
 >
 > It is about **clear boundaries, explicit contracts, and enabling teams** to deliver value safely and quickly.
 
-### Key Principles
+**How we make decisions:**
 
-**Domain-First:**
-- Organize around business capabilities, not technical layers
-- Boundaries reflect how the business thinks about the problem
-- Services represent cohesive business concepts
+- **Domain-first ownership** - Organize around business capabilities, align teams to domains
+- **Evolutionary change** - Strangler pattern for legacy, small batches, validate before scaling
+- **Operability by default** - SLOs, telemetry, runbooks are standard, not optional
+- **Paved road platform** - Self-service capabilities, golden paths, remove friction
+- **Pragmatic trade-offs** - Choose patterns based on context, document exceptions in ADRs
 
-**Evolutionary:**
-- Architecture evolves incrementally, not through big-bang rewrites
-- Strangler pattern for legacy: wrap, replace, retire in phases
-- Validate each step before proceeding
-- Greenfield projects start with good boundaries from day one
-
-**Business Value First:**
-- Architecture serves business goals, not the other way around
-- Deliver business outcomes, not just technical improvements
-- Measure success in business terms (speed, reliability, cost)
-
-**Team Empowerment:**
-- Align teams to domains (not technical layers)
-- Provide self-service platforms (not bottlenecks)
-- Enable teams to move fast with safety
-- Clear ownership and accountability
-
-**Pragmatic, Not Dogmatic:**
-- Choose patterns based on context, not hype
-- Simple solutions over complex ones
-- Exceptions are okay when justified (document in ADRs)
-- Technology choices should fit your constraints
+See [principles.md](../02-principles/principles.md) for detailed guidance on applying these in practice
 
 ---
 
