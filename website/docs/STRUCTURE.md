@@ -54,9 +54,14 @@ Detailed design guidance for implementing the target architecture.
   - Team alignment (how Team Topologies maps to architecture)
   - Migration path (4-phase approach from current to target state)
   - Success indicators (how to measure progress)
-- **patterns.md** - Core patterns by layer (edge, BFF, domain services, events, data, resilience)
-  - Proven implementation patterns for each architecture layer
-  - Technology decision guidance (REST vs GraphQL, SQL vs NoSQL, Kafka vs RabbitMQ)
+- **patterns.md** - Overview of patterns organized by layer
+- **patterns/** - Detailed pattern documentation by layer
+  - **edge-patterns.md** - Gateway layer (security, rate limiting, validation)
+  - **bff-patterns.md** - Backend-for-Frontend layer (composition, shaping, policies)
+  - **domain-service-patterns.md** - Business logic layer (hexagonal, outbox, idempotency)
+  - **event-patterns.md** - Async layer (versioning, schema evolution, DLQs)
+  - **data-patterns.md** - Data layer (single writer, CQRS, projections)
+  - **resilience-patterns.md** - Cross-cutting (circuit breakers, retries, timeouts)
 - **guardrails.md** - Non-negotiable rules for teams
   - Domain boundaries, contracts, communication, data ownership
   - Operability, deployment, security, testing requirements

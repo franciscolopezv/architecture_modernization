@@ -34,7 +34,23 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'reference-architecture/target-architecture',
-        'reference-architecture/patterns',
+        {
+          type: 'category',
+          label: 'Patterns',
+          collapsed: false,
+          link: {
+            type: 'doc',
+            id: 'reference-architecture/patterns',
+          },
+          items: [
+            'reference-architecture/patterns/edge-patterns',
+            'reference-architecture/patterns/bff-patterns',
+            'reference-architecture/patterns/domain-service-patterns',
+            'reference-architecture/patterns/event-patterns',
+            'reference-architecture/patterns/data-patterns',
+            'reference-architecture/patterns/resilience-patterns',
+          ],
+        },
         'reference-architecture/guardrails',
         'reference-architecture/anti-patterns',
       ],

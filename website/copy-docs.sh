@@ -20,6 +20,10 @@ cp "$ROOT_DIR/02-principles"/*.md "$SCRIPT_DIR/docs/principles/"
 # Copy reference architecture files
 cp "$ROOT_DIR/03-reference-architecture"/*.md "$SCRIPT_DIR/docs/reference-architecture/"
 
+# Copy patterns subfolder
+mkdir -p "$SCRIPT_DIR/docs/reference-architecture/patterns"
+cp "$ROOT_DIR/03-reference-architecture/patterns"/*.md "$SCRIPT_DIR/docs/reference-architecture/patterns/"
+
 # Copy supporting docs
 cp "$ROOT_DIR/ABOUT.md" "$SCRIPT_DIR/docs/"
 cp "$ROOT_DIR/STRUCTURE.md" "$SCRIPT_DIR/docs/"
